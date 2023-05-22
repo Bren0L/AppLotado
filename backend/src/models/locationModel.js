@@ -1,8 +1,16 @@
 const connection = require("./connection");
 
 const getAll = async() => {
-    const [ location ] = await connection.execute("SELECT * FROM Location");
-    return location;
+    const [ location ] = await connection.realtimeDatabase().ref('users/')
+    .on('child_changed', snapshot => {
+        const coords = snapshot.val();
+
+        console.log("Coords: ", coords);
+        return coords;
+
+        
+    });;
+    
 };
 
 const createLocation = async(userLocation) => {
