@@ -10,7 +10,7 @@ export default function Home({ route }){
     return(
         <Drawer.Navigator>
             <Drawer.Screen name="Map" component={Map}/>
-            <Drawer.Screen name="ConfigBus" component={ConfigBus} initialParams={{userId: route.params}}/>
+            <Drawer.Screen name="ConfigBus" component={ConfigBus} initialParams={{params: route.params}}/>
       </Drawer.Navigator>
     )
 }

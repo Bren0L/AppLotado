@@ -6,7 +6,7 @@ import MAP_API_KEY from '../important_files/map_api_key';
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
 import { Dimensions, Text } from 'react-native';
 import { Mosqueiro } from '../routes/Mosqueiro';
-import { firebase } from '../important_files/FirebaseConfig';
+import socket from '../ws server/websocketServer';
 
 
 
@@ -28,7 +28,13 @@ export default function Map(){
     });
 
     useEffect(() => {
+        
+        socket.emit("location", () => "location");
+
+        socket.on("sentLocation", location => console.log(location));
+        
         (async() => {
+            
             await Location.enableNetworkProviderAsync();
             const {status} = await Location.requestForegroundPermissionsAsync();
         if(status == "granted"){
@@ -44,20 +50,22 @@ export default function Map(){
         }
         });
         
-        firebase.database()
+        /*firebase.database()
             .ref('users/')
             .on('child_changed', snapshot => {
                 const coords = snapshot.val();
                 setBuses([coords]);
 
                 console.log("Coords: ", coords);
-            });
+            });*/
+
         
-        firebase.database()
+        
+        /*firebase.database()
             .ref('users/')
             .on('child_removed', () => {
                 setBuses(null);
-            });
+            });*/
             
     }, []);
 
