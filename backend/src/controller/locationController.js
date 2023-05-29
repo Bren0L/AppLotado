@@ -1,10 +1,25 @@
 const locationModel = require("../models/locationModel");
 
-const getAll = async(_req, res) => {
+const auth = async(login) => {
+    
+    const authentified = await locationModel.auth(login);
+    
+    return authentified;
+};
 
-    const location = await locationModel.getAll();
-
-    return res.status(200).json(location);
+const getAll = async() => {
+    try {
+        let coordinates;
+        locationModel.getAll(coords => {
+            coordinates = coords;
+            return coordinates;
+            console.log(coordinates);
+        });
+        console.log(coordinates);
+        return coordinates;
+    } catch(error){
+        console.error(error);
+    }
 };
 
 const createLocation = async(req, res) => {
@@ -31,5 +46,6 @@ module.exports = {
     getAll,
     createLocation,
     deleteLocation,
-    updateLocation
+    updateLocation,
+    auth
 };
