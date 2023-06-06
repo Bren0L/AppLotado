@@ -3,15 +3,17 @@ import styles from "./styles/ConfigBusStyle";
 import { firebase } from "../important_files/FirebaseConfig";
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
+import socket from "../wsServer/websocketServer";
+import { useEffect } from "react";
 
 
 
 const LOCATION_TASK = "expo-location-task";
-let user;
 
 export default function ConfigBus({ route }){
+    const user = route.params.params.userId;
     
-    user = route.params.userId;
+    console.log("User: ", user);
 
     
     /*const setBreakReason = async() => {
@@ -24,7 +26,7 @@ export default function ConfigBus({ route }){
     };*/
 
     const stopSendData = () => {
-        firebase.database().ref("/users/"+user).remove();
+        socket.emit("stopSendingLocation", user);
         Location.stopLocationUpdatesAsync(LOCATION_TASK);
     }
 
@@ -40,6 +42,18 @@ export default function ConfigBus({ route }){
             foregroundService: {notificationTitle: "Localização", notificationBody:"Transmitindo localização de fundo"}
         });
     };
+
+    TaskManager.defineTask(LOCATION_TASK, ({data: { locations }, error}) => {
+        if(locations){
+            const lat = locations[0].coords.latitude;
+            const long = locations[0].coords.longitude;
+            const data = {user, lat, long};
+            socket.emit("sendLocation", data);
+        }
+        if(error){
+            console.error(error);
+        }
+    });
 
         return(
             <View style={{flex: 1, alignItems: 'center'}}>
@@ -62,15 +76,6 @@ export default function ConfigBus({ route }){
 
 }
 
-TaskManager.defineTask(LOCATION_TASK, async({data: { locations }, error}) => {
-    if(locations){
-        const lat = locations[0].coords.latitude;
-        const long = locations[0].coords.longitude;
-        await firebase.database().ref("users/"+user).set({latitude: lat, longitude: long}).then(() => console.log('data set at: ', new Date(Date.now()).toLocaleTimeString()));
-    }
-    if(error){
-        console.error(error);
-    }
-});
+
 
 

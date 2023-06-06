@@ -4,8 +4,13 @@ const controller = require("./controller/locationController");
 
 
 
+
 io.on("connection", (socket) => {
     console.log("Hello ", socket.id);
+
+    socket.on("disconnect", () => {
+        console.log(socket.id, " disconnected");
+    })
 
     socket.on("message", (message) => {
         socket.emit("return", message);
@@ -17,16 +22,28 @@ io.on("connection", (socket) => {
         if(firebaseLogin.code){
             socket.emit("wrongEorP");
         }else{
-            const answer = { userId: firebaseLogin };
+            const answer = firebaseLogin;
             socket.emit("answer", answer);
         }
         
     });
+
+    socket.on("sendLocation", (data) => {
+        const {user, lat, long} = data;
+        controller.sendLocation(user, lat, long);
+    });
+
+    socket.on("stopSendingLocation", (user) => {
+        controller.stopSendingLocation(user);
+        socket.emit("locationStopped", "stopped");
+    });
     
 
     socket.on("location", () => {
-        const s = controller.getAll();
-        console.log(s);
-        socket.emit("sentLocation", s);
+        controller.getBusesLocation(coords => {
+            console.log(coords);
+            socket.emit("sentLocation", coords);
+        });
     });
+    
 });

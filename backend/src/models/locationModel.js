@@ -1,6 +1,6 @@
 const connection = require("./connection");
 const { signInWithEmailAndPassword } = require("firebase/auth");
-const { ref, onChildChanged } = require("firebase/database");
+const { ref, onChildChanged, set, remove } = require("firebase/database");
 const controller = require("../controller/locationController");
 
 const auth = async(logIn) => {
@@ -18,7 +18,7 @@ const auth = async(logIn) => {
 
 }
 
-const getAll = (callback) => {
+const getBusesLocation = (callback) => {
     const dbRef = ref(connection.realtimeDatabase, 'users/');
         
     onChildChanged(dbRef, (snapshot) => {
@@ -28,6 +28,12 @@ const getAll = (callback) => {
     });
 };
 
+const stopSendingLocation = (user) => {
+    console.log(user);
+    const dbRef = ref(connection.realtimeDatabase, 'users/'+user);
+    remove(dbRef);
+}
+
 const getLocation = (callback) => {
     const dbRef = ref(connection.realtimeDatabase, 'users/');
         
@@ -36,6 +42,12 @@ const getLocation = (callback) => {
             
         callback(coords);
     });
+}
+
+const sendLocation = (user, lat, long) => {
+    
+    const dbRef = ref(connection.realtimeDatabase, "users/"+user);
+    set(dbRef, {latitude: lat, longitude: long}).then(() => console.log('data set at: ', new Date(Date.now()).toLocaleTimeString()));
 }
 
 const handleLocation = (coords) => {
@@ -71,7 +83,9 @@ const updateLocation = async(id, location) => {
 }
 
 module.exports = {
-    getAll,
+    getBusesLocation,
+    stopSendingLocation,
+    sendLocation,
     createLocation,
     deleteLocation,
     updateLocation,

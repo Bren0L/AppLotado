@@ -7,20 +7,20 @@ const auth = async(login) => {
     return authentified;
 };
 
-const getAll = async() => {
-    try {
-        let coordinates;
-        locationModel.getAll(coords => {
-            coordinates = coords;
-            return coordinates;
-            console.log(coordinates);
-        });
-        console.log(coordinates);
-        return coordinates;
-    } catch(error){
-        console.error(error);
-    }
+const getBusesLocation = async(callback) => {
+    locationModel.getBusesLocation(coords => {
+        console.log("controller coords: ", coords);
+        callback(coords);
+    });
 };
+
+const sendLocation = (user, lat, long) => {
+    locationModel.sendLocation(user, lat, long);
+}
+
+const stopSendingLocation = (user) => {
+    locationModel.stopSendingLocation(user);
+}
 
 const createLocation = async(req, res) => {
     const createdLocation = await locationModel.createLocation(req.body);
@@ -43,7 +43,9 @@ const updateLocation = async(req, res) => {
 }
 
 module.exports = {
-    getAll,
+    getBusesLocation,
+    stopSendingLocation,
+    sendLocation,
     createLocation,
     deleteLocation,
     updateLocation,

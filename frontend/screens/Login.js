@@ -3,7 +3,7 @@ import styles from "./styles/LoginStyle"
 import { useNavigation } from '@react-navigation/native';
 import { useState } from "react";
 import * as Animatable from 'react-native-animatable';
-import socket from "../ws server/websocketServer";
+import socket from "../wsServer/websocketServer";
 
 
 export default function Login(){
@@ -21,7 +21,6 @@ export default function Login(){
         socket.emit("login", login);
 
         socket.on("answer", answer => {
-            console.log("Logou");
             navigation.navigate("Home", {userId: answer.userId });
         });
 
