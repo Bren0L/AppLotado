@@ -1,20 +1,17 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles/ConfigBusStyle";
-import { firebase } from "../important_files/FirebaseConfig";
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
 import socket from "../wsServer/websocketServer";
-import { useEffect } from "react";
 
 
 
 const LOCATION_TASK = "expo-location-task";
 
+
 export default function ConfigBus({ route }){
     const user = route.params.params.userId;
     
-    console.log("User: ", user);
-
     
     /*const setBreakReason = async() => {
         try{
@@ -39,7 +36,7 @@ export default function ConfigBus({ route }){
             accuracy: Location.LocationAccuracy.BestForNavigation, 
             deferredUpdatesInterval: 2000, 
             showsBackgroundLocationIndicator: true, 
-            foregroundService: {notificationTitle: "Localização", notificationBody:"Transmitindo localização de fundo"}
+            foregroundService: { notificationTitle: "Localização", notificationBody:"Transmitindo localização de fundo" }
         });
     };
 
@@ -50,29 +47,29 @@ export default function ConfigBus({ route }){
             const data = {user, lat, long};
             socket.emit("sendLocation", data);
         }
+        
         if(error){
             console.error(error);
         }
     });
 
-        return(
-            <View style={{flex: 1, alignItems: 'center'}}>
-                <TouchableOpacity style={styles.TOStart} onPress={() => startSendData()}>
-                    <Text style={styles.Text}>COMEÇAR VIAGEM</Text>
-                </TouchableOpacity>
-                
-    
-                <TouchableOpacity style={styles.TOStop} onPress={() => stopSendData()}>
-                    <Text style={styles.Text}>FINALIZAR VIAGEM</Text>
-                </TouchableOpacity>
-                
-                
-                <TouchableOpacity style={styles.TOBreak} onPress={() => setBreakReason()}>
-                    <Text style={styles.Text}>INTERROMPER VIAGEM</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    
+    return(
+        <View style={{flex: 1, alignItems: 'center'}}>
+            <TouchableOpacity style={styles.TOStart} onPress={() => startSendData()}>
+                <Text style={styles.Text}>COMEÇAR VIAGEM</Text>
+            </TouchableOpacity>
+            
+
+            <TouchableOpacity style={styles.TOStop} onPress={() => stopSendData()}>
+                <Text style={styles.Text}>FINALIZAR VIAGEM</Text>
+            </TouchableOpacity>
+            
+            
+            <TouchableOpacity style={styles.TOBreak} onPress={() => setBreakReason()}>
+                <Text style={styles.Text}>INTERROMPER VIAGEM</Text>
+            </TouchableOpacity>
+        </View>
+    );
 
 }
 
