@@ -14,8 +14,11 @@ io.on("connection", (socket) => {
         const firebaseLogin = await controller.auth(login);
 
         if(firebaseLogin.code){
-            socket.emit("wrongEorP");
+            console.log("Error code: ", firebaseLogin);
+            console.log("Access denied");
+            socket.emit("wrongEorP", "wrong");
         }else{
+            console.log("Access granted");
             const answer = firebaseLogin;
             socket.emit("answer", answer);
         }
@@ -26,16 +29,19 @@ io.on("connection", (socket) => {
     socket.on("stopSendingLocation", (user) => {
         controller.stopSendingLocation(user);
 
-        socket.emit("locationStopped", "stopped");
+        io.emit("locationStopped", "stopped");
     });
     
 
-    socket.on("location", () => {
-        controller.getBusesLocation(coords => {
-            console.log(coords);
+    socket.on("getBusesLocation", () => {
+        controller.getBusesLocation(buses => {
+            console.log(buses);
             
-            socket.emit("sentLocation", coords);
+            socket.emit("busesLocation", buses);
         });
     });
+
+    socket.on("offBusBroken", user => controller.offBusBroken(user));
     
 });
+

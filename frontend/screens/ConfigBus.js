@@ -1,9 +1,9 @@
-import { Text, ToastAndroid, TouchableOpacity, View } from "react-native";
-import styles from "./styles/ConfigBusStyle";
+import { Text, ToastAndroid, TouchableOpacity, View } from 'react-native';
+import styles from './styles/ConfigBusStyle';
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
-import socket from "../wsServer/websocketServer";
-import { useState } from "react";
+import socket from '../wsServer/websocketServer';
+import { useState } from 'react';
 
 
 
@@ -15,14 +15,15 @@ export default function ConfigBus({ route }){
     const [hasStarted, setHasStarted] = useState(false);
     
     
-    /*const setBreakReason = async() => {
-        try{
-            const docRef = await addDoc(collection(firebase.firestore(), 'offBus'), {tittle: 'ônibus inativo', description: 'Problemas tecnicos'});
-            console.log('document created with id ', docRef.id);
-        }catch(e){
-            console.error('error addind document', e);
-        }
-    };*/
+    const offBusBroken = () => {
+        socket.emit("offBusBroken", user);
+        TaskManager.isTaskRegisteredAsync(LOCATION_TASK).then((tracking) => {
+            if(tracking){
+                Location.stopLocationUpdatesAsync(LOCATION_TASK);
+            };
+        })
+        setHasStarted(false);
+    };
 
     const stopSendData = () => {
         socket.emit("stopSendingLocation", user);
@@ -32,7 +33,7 @@ export default function ConfigBus({ route }){
             }
         })
         setHasStarted(false);
-    }
+    };
 
     const startSendData = async() => {
         if(hasStarted){
@@ -75,7 +76,7 @@ export default function ConfigBus({ route }){
     });
 
     return(
-        <View style={{flex: 1, alignItems: 'center'}}>
+        <View style={{flex: 1, alignItems: "center"}}>
             <TouchableOpacity style={styles.TOStart} onPress={() => startSendData()}>
                 <Text style={styles.Text}>COMEÇAR VIAGEM</Text>
             </TouchableOpacity>
@@ -86,7 +87,7 @@ export default function ConfigBus({ route }){
             </TouchableOpacity>
             
             
-            <TouchableOpacity style={styles.TOBreak} onPress={() => setBreakReason()}>
+            <TouchableOpacity style={styles.TOBreak} onPress={() => offBusBroken()}>
                 <Text style={styles.Text}>INTERROMPER VIAGEM</Text>
             </TouchableOpacity>
         </View>

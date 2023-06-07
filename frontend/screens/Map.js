@@ -1,10 +1,10 @@
-import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import MapViewDirections from 'react-native-maps-directions';
 import MAP_API_KEY from '../important_files/map_api_key';
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
-import { Dimensions, Text } from 'react-native';
+import { Dimensions, Image, Text } from 'react-native';
 import { Mosqueiro } from '../routes/Mosqueiro';
 import socket from '../wsServer/websocketServer';
 
@@ -20,6 +20,8 @@ const defaultCoordinate = {
 export default function Map(){
     
     const [buses, setBuses] = useState([]);
+    const [getBus, setBus] = useState(null);
+    const [stopBus, setStopBus] = useState(null);
     const [origin, setOrigin] = useState({
         latitude: -1.450495,
         longitude: -48.468129,
@@ -29,9 +31,9 @@ export default function Map(){
 
     useEffect(() => {
         
-        socket.emit("location", () => "location");
+        socket.emit("getBusesLocation");
 
-        socket.on("sentLocation", location => setBuses([location]));
+        socket.on("busesLocation", location => setBuses([location]));
         
         (async() => {
             
@@ -59,44 +61,45 @@ export default function Map(){
     return(
         <MapView
             provider={PROVIDER_GOOGLE}
-            style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height}}
+            style={{width: Dimensions.get("window").width, height: Dimensions.get("window").height}}
             showsUserLocation={true}
             showsTraffic={true}
             followsUserLocation={true}
             loadingEnabled={true}
             initialRegion={defaultCoordinate}
+            onDoublePress={(stopBus) => setStopBus(stopBus.nativeEvent.coordinate)}
         >   
             
-            {buses && buses.map((coords) => {
+            {buses && buses.map((bus) => {
                 let cont = 0;
                 return(
-                    <Marker coordinate={coords} key={cont++}>
-                        <Ionicons name='bus-outline' size={20}/>
-                            <Callout style={{minWidth: 120}}>
-                                <Text>Bus</Text>
-                            </Callout>
+                    <Marker 
+                        coordinate={{latitude: bus.latitude, longitude: bus.longitude}} 
+                        key={cont++} 
+                        description={bus.status} 
+                        title='Mosqueiro' 
+                        onPress={() => {
+                            setBus({latitude: bus.latitude, longitude: bus.longitude});
+                        }}
+                        >
+                        <Ionicons name='bus-outline' size={20}></Ionicons>
                     </Marker>
-                )
+                );
             })}
             
-            <MapViewDirections 
-                mode='DRIVING'
-                timePrecision='now'
-                apikey="AIzaSyA0mRDQaXehkmPBi0l0KN4QLnr0A5KYGXk"
-                strokeColor="#8E8"
+            {getBus && stopBus && 
+                <MapViewDirections 
+                mode="DRIVING"
+                origin={getBus}
+                destination={stopBus}
+                timePrecision="now"
+                apikey={MAP_API_KEY}
+                strokeColor="#88E"
+                onReady={(props) => console.log(props.distance)}
                 strokeWidth={4}/>
+            }
+            
         </MapView>
         
     );
 }
-
-/*{Mosqueiro.map( (point) => {
-    return(
-        <Marker coordinate={point} key={point.key}>
-            <Ionicons name='bus-outline' size={20}/>
-            <Callout style={{minWidth: 120}}>
-                <Text>Parada Sao-Bras</Text>
-            </Callout>
-        </Marker>
-    );
-})}*/

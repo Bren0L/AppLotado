@@ -1,14 +1,13 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native"
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import styles from './styles/RegisterStyle'
-import { useState } from "react";
-import { firebase } from "../important_files/FirebaseConfig";
+import { useState } from 'react';
 import * as Animatable from 'react-native-animatable';
 
 
 export default function Register({ navigation }){
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     
 
     const handleSingUp = () => {
@@ -18,8 +17,8 @@ export default function Register({ navigation }){
             alert("conta criada com sucesso");
             navigation.navigate("Home");
 
-        }).catch(error => alert(error.message))
-    }
+        }).catch(error => alert(error.message));
+    };
 
 
     return(
@@ -37,6 +36,6 @@ export default function Register({ navigation }){
             </Animatable.View>
             
         </View>
-    )
+    );
 }
 

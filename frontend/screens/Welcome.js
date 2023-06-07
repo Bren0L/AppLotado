@@ -17,9 +17,9 @@ const navigation = useNavigation();
         <Animatable.Image
         delay={2000}
         animation="flipInY"
-        source={require('./img/logo2.png')}
-        style={{ width: '50%', height: '39%' }}
-        resizeMode='contain'
+        source={require("./img/logo2.png")}
+        style={{ width: "50%", height: "39%" }}
+        resizeMode="contain"
         borderTopLeftRadius={100}
         borderTopRightRadius={10}
         borderBottomLeftRadius={100}
@@ -32,11 +32,11 @@ const navigation = useNavigation();
         <Text style={styles.text}>Faça o login para começar</Text>
 
         <TouchableOpacity style={styles.button}
-        onPress={ () => navigation.navigate('Login')}>
+        onPress={ () => navigation.navigate("Login") }>
             <Text style={styles.buttonText}>Acessar</Text>
         </TouchableOpacity>
       </Animatable.View>
 
     </View>
-  )
+  );
 }

@@ -9,11 +9,15 @@ const auth = async(login) => {
 };
 
 const getBusesLocation = (callback) => {
-    locationModel.getBusesLocation(coords => {
-        console.log("controller coords: ", coords);
+    locationModel.getBusesLocation(buses => {
+        console.log("controller coords: ", buses);
 
-        callback(coords);
+        callback(buses);
     });
+};
+
+const offBusBroken = (user) => {
+    locationModel.offBusBroken(user);
 };
 
 const sendLocation = (data) => {
@@ -28,6 +32,7 @@ const stopSendingLocation = (user) => {
 
 module.exports = {
     getBusesLocation,
+    offBusBroken,
     stopSendingLocation,
     sendLocation,
     auth
