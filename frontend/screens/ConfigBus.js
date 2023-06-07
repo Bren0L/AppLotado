@@ -1,8 +1,9 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, ToastAndroid, TouchableOpacity, View } from "react-native";
 import styles from "./styles/ConfigBusStyle";
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
 import socket from "../wsServer/websocketServer";
+import { useState } from "react";
 
 
 
@@ -11,6 +12,7 @@ const LOCATION_TASK = "expo-location-task";
 
 export default function ConfigBus({ route }){
     const user = route.params.params.userId;
+    const [hasStarted, setHasStarted] = useState(false);
     
     
     /*const setBreakReason = async() => {
@@ -24,20 +26,39 @@ export default function ConfigBus({ route }){
 
     const stopSendData = () => {
         socket.emit("stopSendingLocation", user);
-        Location.stopLocationUpdatesAsync(LOCATION_TASK);
+        TaskManager.isTaskRegisteredAsync(LOCATION_TASK).then((tracking) => {
+            if(tracking){
+                Location.stopLocationUpdatesAsync(LOCATION_TASK);
+            }
+        })
+        setHasStarted(false);
     }
 
     const startSendData = async() => {
+        if(hasStarted){
+            console.log("Task is already in use");
+            return;
+        }
         await Location.enableNetworkProviderAsync();
         await Location.requestForegroundPermissionsAsync();
         await Location.requestBackgroundPermissionsAsync();
         
-        await Location.startLocationUpdatesAsync(LOCATION_TASK, {
-            accuracy: Location.LocationAccuracy.BestForNavigation, 
-            deferredUpdatesInterval: 2000, 
-            showsBackgroundLocationIndicator: true, 
-            foregroundService: { notificationTitle: "Localização", notificationBody:"Transmitindo localização de fundo" }
-        });
+        const providerStatus = await Location.getProviderStatusAsync();
+
+        if(providerStatus.locationServicesEnabled && 
+            providerStatus.gpsAvailable && 
+            providerStatus.backgroundModeEnabled && 
+            providerStatus.networkAvailable){
+                await Location.startLocationUpdatesAsync(LOCATION_TASK, {
+                    accuracy: Location.LocationAccuracy.BestForNavigation, 
+                    deferredUpdatesInterval: 2000, 
+                    showsBackgroundLocationIndicator: true, 
+                    foregroundService: { notificationTitle: "Localização", notificationBody:"Transmitindo localização de fundo" }
+                });
+                setHasStarted(await Location.hasStartedLocationUpdatesAsync(LOCATION_TASK));
+                console.log("Task registered");
+            }
+        
     };
 
     TaskManager.defineTask(LOCATION_TASK, ({data: { locations }, error}) => {
