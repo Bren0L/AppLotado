@@ -21,7 +21,7 @@ export default function Map(){
     
     const [buses, setBuses] = useState([]);
     const [getBus, setBus] = useState(null);
-    const [stopBus, setStopBus] = useState(null);
+    const [busStop, setbusStop] = useState(null);
     const [origin, setOrigin] = useState({
         latitude: -1.450495,
         longitude: -48.468129,
@@ -67,7 +67,7 @@ export default function Map(){
             followsUserLocation={true}
             loadingEnabled={true}
             initialRegion={defaultCoordinate}
-            onDoublePress={(stopBus) => setStopBus(stopBus.nativeEvent.coordinate)}
+            onDoublePress={(busStop) => setbusStop(busStop.nativeEvent.coordinate)}
         >   
             
             {buses && buses.map((bus) => {
@@ -87,11 +87,11 @@ export default function Map(){
                 );
             })}
             
-            {getBus && stopBus && 
+            {getBus && busStop && 
                 <MapViewDirections 
                 mode="DRIVING"
                 origin={getBus}
-                destination={stopBus}
+                destination={busStop}
                 timePrecision="now"
                 apikey={MAP_API_KEY}
                 strokeColor="#88E"
