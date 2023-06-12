@@ -15,30 +15,33 @@ export default function ConfigBus({ route }){
     const [hasStarted, setHasStarted] = useState(false);
     
     useEffect(() => {
-
+        checkStatus();
     });
 
     const checkStatus = async() => {
-        const status = await TaskManager.isTaskRegisteredAsync(LOCATION_TASK);
+        const status = await Location.hasStartedLocationUpdatesAsync(LOCATION_TASK);
         setHasStarted(status);
     }
     
     const offBusBroken = () => {
+        console.log(hasStarted);
         if(hasStarted){
             socket.emit("offBusBroken", user);
-        
+            TaskManager.unregisterTaskAsync(LOCATION_TASK);
             setHasStarted(false);
         }
     };
 
     const stopSendData = () => {
+        setHasStarted(false);
         socket.emit("stopSendingLocation", user);
+
         TaskManager.isTaskRegisteredAsync(LOCATION_TASK).then((tracking) => {
             if(tracking){
                 Location.stopLocationUpdatesAsync(LOCATION_TASK);
             }
         })
-        setHasStarted(false);
+        
     };
 
     const startSendData = async() => {
@@ -58,7 +61,8 @@ export default function ConfigBus({ route }){
             providerStatus.networkAvailable){
                 await Location.startLocationUpdatesAsync(LOCATION_TASK, {
                     accuracy: Location.LocationAccuracy.BestForNavigation, 
-                    deferredUpdatesInterval: 2000, 
+                    distanceInterval: 0,
+                    timeInterval: 2000, 
                     showsBackgroundLocationIndicator: true, 
                     foregroundService: { notificationTitle: "Localização", notificationBody:"Transmitindo localização de fundo" }
                 });
