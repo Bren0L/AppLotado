@@ -3,7 +3,7 @@ import styles from './styles/ConfigBusStyle';
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
 import socket from '../wsServer/websocketServer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -14,15 +14,21 @@ export default function ConfigBus({ route }){
     const user = route.params.params.userId;
     const [hasStarted, setHasStarted] = useState(false);
     
+    useEffect(() => {
+
+    });
+
+    const checkStatus = async() => {
+        const status = await TaskManager.isTaskRegisteredAsync(LOCATION_TASK);
+        setHasStarted(status);
+    }
     
     const offBusBroken = () => {
-        socket.emit("offBusBroken", user);
-        TaskManager.isTaskRegisteredAsync(LOCATION_TASK).then((tracking) => {
-            if(tracking){
-                Location.stopLocationUpdatesAsync(LOCATION_TASK);
-            };
-        })
-        setHasStarted(false);
+        if(hasStarted){
+            socket.emit("offBusBroken", user);
+        
+            setHasStarted(false);
+        }
     };
 
     const stopSendData = () => {

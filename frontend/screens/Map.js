@@ -35,22 +35,22 @@ export default function Map(){
 
         socket.on("busesLocation", location => setBuses([location]));
         
-        (async() => {
-            
+        /*async() => {
             await Location.enableNetworkProviderAsync();
             const {status} = await Location.requestForegroundPermissionsAsync();
-        if(status == "granted"){
-            const location = await Location.getCurrentPositionAsync();
-            setOrigin({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-                latitudeDelta: 0.00922,
-                longitudeDelta: 0.00421
-            })();
-        } else {
-            throw new Error("Localização não garantida");
-        }
-        });
+            
+            if(status == "granted"){
+                const location = await Location.getCurrentPositionAsync();
+                setOrigin({
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                    latitudeDelta: 0.00922,
+                    longitudeDelta: 0.00421
+                });
+            } else {
+                throw new Error("Localização não garantida");
+            }
+        };*/
         
         socket.on("locationStopped", () => setBuses(null));
             
