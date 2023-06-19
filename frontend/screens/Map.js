@@ -1,10 +1,10 @@
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useState, useEffect, useRef } from 'react';
 import MapViewDirections from 'react-native-maps-directions';
-import MAP_API_KEY from '../important_files/map_api_key';
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import socket from '../wsServer/websocketServer';
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet"
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import { MAP_API_KEY } from "@env";
 
 
 
@@ -16,7 +16,6 @@ const defaultCoordinate = {
 };
 
 export default function Map(){
-      // ref
   const sheetRef = useRef(null);
   const snapPoints = [150, 400]
 
