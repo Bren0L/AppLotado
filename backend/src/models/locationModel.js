@@ -4,8 +4,8 @@ const { ref, onChildChanged, set, remove } = require("firebase/database");
 
 
 
-const auth = async(logIn) => {
-    const { email, password } = logIn;
+const auth = async(login) => {
+    const { email, password } = login;
     
     return await signInWithEmailAndPassword(connection.auth, email, password)
     .then((userCredential) => {

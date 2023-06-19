@@ -61,8 +61,7 @@ export default function ConfigBus({ route }){
             providerStatus.networkAvailable){
                 await Location.startLocationUpdatesAsync(LOCATION_TASK, {
                     accuracy: Location.LocationAccuracy.BestForNavigation, 
-                    distanceInterval: 0,
-                    timeInterval: 2000, 
+                    distanceInterval: 1,
                     showsBackgroundLocationIndicator: true, 
                     foregroundService: { notificationTitle: "Localização", notificationBody:"Transmitindo localização de fundo" }
                 });

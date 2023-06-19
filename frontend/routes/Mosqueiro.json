@@ -1,0 +1,538 @@
+[
+    {
+        "name": "Parada Pratiquara com Veiga Cabral",
+        "latitude": -1.1636499508286466,
+        "longitude": -48.464261488681935
+    },
+    {
+        "name": "Parada Siqueira Mendes com 15 de Novembro",
+        "latitude": -1.1649612802455327, 
+        "longitude": -48.46811582293164
+    },
+    {
+        "name": "Parada Pratiquara com José do Ó",
+        "latitude": -1.163899344811746, 
+        "longitude": -48.471294240596016
+    },
+    {
+        "name": "Parada 16 de Novembro com Padre Manoel",
+        "latitude": -1.1561583629080987, 
+        "longitude": -48.46765931395967
+    },
+    {
+        "name": "Parada 16 de Novembro com Santa Helena",
+        "latitude": -1.1544850047228221, 
+        "longitude": -48.46682782918355
+    },
+    {
+        "name": "Parada 16 de Novembro com São Sebastião",
+        "latitude": -1.151728252247978, 
+        "longitude": -48.4655537799275
+    },
+    {
+        "name": "Parada 16 de Novembro com Santa Terezinha",
+        "latitude": -1.1486336066890437, 
+        "longitude": -48.464113433656145
+    },
+    {
+        "name": "Parada 16 de Novembro com Rodrigues Pinajé",
+        "latitude": -1.1427073362830584, 
+        "longitude": -48.461275139325394
+    },
+    {
+        "name": "Parada 16 de Novembro com Santo Antonio",
+        "latitude": -1.1403581875084778, 
+        "longitude": -48.460231760025344
+    },
+    {
+        "name": "Parada 16 de Novembro com Josefa Oliveira",
+        "latitude": -1.138157870043082, 
+        "longitude": -48.459184357422416
+    },
+    {
+        "name": "Parada 16 de Novembro com Camilo Salgado",
+        "latitude": -1.1367003766901107, 
+        "longitude": -48.458488324192096
+    },
+    {
+        "name": "Parada 16 de Novembro com Beira Mar",
+        "latitude": -1.1340189112772894, 
+        "longitude": -48.457278204047405
+    },
+    {
+        "name": "Parada Beira Mar com Eurico Romariz",
+        "latitude": -1.1321712306392866, 
+        "longitude": -48.455827128954894
+    },
+    {
+        "name": "Parada Beira Mar com Natal | Sentido Leste",
+        "latitude": -1.1316724371251448, 
+        "longitude": -48.454416287139665
+    },
+    {
+        "name": "Parada Beira Mar com Antonio Mantega",
+        "latitude": -1.1286191566297392, 
+        "longitude": -48.45189371737297
+    },
+    {
+        "name": "Parada Beira Mar com Consciência",
+        "latitude": -1.1252139227438562, 
+        "longitude": -48.44845462806554
+    },
+    {
+        "name": "Parada Beira Mar com Alfredo Solano",
+        "latitude": -1.116373082662747, 
+        "longitude": -48.43405612676031
+    },
+    {
+        "name": "Parada Beira Mar com Bela Vista",
+        "latitude": -1.1123001051452626, 
+        "longitude": -48.42771769896943
+    },
+    {
+        "name": "Parada São Francisco com Boa Esperança | Sentido Leste",
+        "latitude": -1.1089486040254704, 
+        "longitude": -48.419166014881974
+    },
+    {
+        "name": "Parada Caranandubba com Santa Maria",
+        "latitude": -1.0981162986001562, 
+        "longitude": -48.41200363109651
+    },
+    {
+        "name": "Parada Carananduba com PA-391",
+        "latitude": -1.0948139799228864, 
+        "longitude": -48.40989847119456
+    },
+    {
+        "name": "Parada PA-391 com São João",
+        "latitude": -1.0968098872434866, 
+        "longitude": -48.40735171156646
+    },
+    {
+        "name": "Parada PA-391 com Dmer | Sentido Sul",
+        "latitude": -1.1019462825353061, 
+        "longitude": -48.40173964969368
+    },
+    {
+        "name": "Parada PA-391 (Entre 11 de Outubro e Paulo Fonteneles)",
+        "latitude": -1.1049615886727784, 
+        "longitude": -48.40037497404246
+    },
+    {
+        "name": "Parada PA-391 com Paulo Fonteneles | Sentido Sul",
+        "latitude": -1.1072961873485911, 
+        "longitude": -48.399446404931275
+    },
+    {
+        "name": "Parada no Portal de Mosqueiro",
+        "latitude": -1.1239636389718988, 
+        "longitude": -48.384198571005065
+    },
+    {
+        "name": "Parada PA-391 (Entre Portal e Nova Esperança)",
+        "latitude": -1.1271147216011104, 
+        "longitude": -48.38082305577405
+    },
+    {
+        "name": "Parada Nova Esperança | Sentido Benevides",
+        "latitude": -1.1316244824378976, 
+        "longitude": -48.37614914792364
+    },
+    {
+        "name": "Parada Mari-Mari | Sentido Benevides",
+        "latitude": -1.139273024338094, 
+        "longitude": -48.36774021759589
+    },
+    {
+        "name": "Parada Ponte do rio Mari-Mari | Sentido Benevides",
+        "latitude": -1.1458443193004353, 
+        "longitude": -48.360559034834786
+    },
+    {
+        "name": "Parada Sabor da Ilha | Sentido Benevides",
+        "latitude": -1.1661577359523885, 
+        "longitude": -48.33839286099496
+    },
+    {
+        "name": "Parada Escola Luíza de Barros | Sentido Benevides",
+        "latitude": -1.1703683141851866, 
+        "longitude": -48.33365824620217
+    },
+    {
+        "name": "Parada na Ponte Furo das Marias",
+        "latitude": -1.175105681045926, 
+        "longitude": -48.32909030199056
+    },
+    {
+        "name": "Parada Ana Julia | Sentido Benevides",
+        "latitude": -1.1989614434787619, 
+        "longitude": -48.307687864382565
+    },
+    {
+        "name": "Parada Agrivila Conceição | Sentido Benevides",
+        "latitude": -1.2011842013681573, 
+        "longitude": -48.30572679941592
+    },
+    {
+        "name": "Parada Praça Elza Ribeiro | Sentido Benevides",
+        "latitude": -1.22372865239181, 
+        "longitude": -48.29434339222613
+    },
+    {
+        "name": "Parada PA-391 com Procópio Ramos",
+        "latitude": -1.2279544094876764, 
+        "longitude": -48.291935603411176
+    },
+    {
+        "name": "Parada PA-391 com Francisco Maia",
+        "latitude": -1.2301805699030715, 
+        "longitude": -48.290630627215094
+    },
+    {
+        "name": "Parada Juquilandia | Sentido Benevides",
+        "latitude": -1.2331088797828222, 
+        "longitude": -48.28780156051178
+    },
+    {
+        "name": "Parada Jardim Chaparral",
+        "latitude": -1.2366467183810406, 
+        "longitude": -48.283158631023646
+    },
+    {
+        "name": "Parada Ginásio Assis Baia | Sentido Benevides",
+        "latitude": -1.2403597349328759, 
+        "longitude": -48.27829803388611
+    },
+    {
+        "name": "Parada PA-391 com Genipaúba",
+        "latitude": -1.242295354049541, 
+        "longitude": -48.27578663605734
+    },
+    {
+        "name": "Parada Praça do Pau-D`Arco | Sentido Benevides",
+        "latitude": -1.2445730746615773, 
+        "longitude": -48.272763901341584
+    },
+    {
+        "name": "Parada Escola Expedito Leão | Sentido Benevides",
+        "latitude": -1.246118772100391, 
+        "longitude": -48.27062125842641
+    },
+    {
+        "name": "Parada PA-391 com Tv. do Bambu | Sentido Benevides",
+        "latitude": -1.248407806972405, 
+        "longitude": -48.2677190153949
+    },
+    {
+        "name": "Parada PA-391 com N.S. do Livramento | Sentido Benevides",
+        "latitude": -1.25302782206098, 
+        "longitude": -48.2656519325642
+    },
+    {
+        "name": "Parada Escola do Livramento | Sentido Benevides",
+        "latitude": -1.2557721369453438, 
+        "longitude": -48.26452858212979
+    },
+    {
+        "name": "Parada Denpasa | Sentido Benevides",
+        "latitude": -1.266009531316232, 
+        "longitude": -48.26033666389172
+    },
+    {
+        "name": "Parada Amazon Frutas | Sentido Benevides",
+        "latitude": -1.278370137858651, 
+        "longitude": -48.255236114370746
+    },
+    {
+        "name": "Parada Terra Cabana | Sentido Benevides",
+        "latitude": -1.289988318692571, 
+        "longitude": -48.248528974043104
+    },
+    {
+        "name": "Parada Escola Alacid Nunes | Sentido Benevides",
+        "latitude": -1.297434825772159, 
+        "longitude": -48.24734582083049
+    },
+    {
+        "name": "Parada Faama | Sentido Benevides",
+        "latitude": -1.3311289517518172, 
+        "longitude": -48.245466614691544
+    },
+    {
+        "name": "Parada Posto Trevo | sentido Benevides",
+        "latitude": -1.339586857785137, 
+        "longitude": -48.244867053232845
+    },
+    {
+        "name": "Parada BR-316 (Entre PA-391 e Heineken)",
+        "latitude": -1.3433674794522943, 
+        "longitude": -48.24900458224757
+    },
+    {
+        "name": "Parada Heineken | BR-316",
+        "latitude": -1.3496367830202134, 
+        "longitude": -48.25451435565433
+    },
+    {
+        "name": "Parada Praça da Liberdade | BR-316 | Sentido Belém",
+        "latitude": -1.363824699847329, 
+        "longitude": -48.26612066551198
+    },
+    {
+        "name": "Parada BR-316 com Libertação",
+        "latitude": -1.3641887293749768, 
+        "longitude": -48.27412351991993
+    },
+    {
+        "name": "Parada BR-316 com Raul Amaral",
+        "latitude": -1.3642545359089155, 
+        "longitude": -48.27809419722079
+    },
+    {
+        "name": "Parada BR-316 com PA-404",
+        "latitude": -1.364412411557829, 
+        "longitude": -48.287776750017436
+    },
+    {
+        "name": "Parada Plastitan Náutica | BR-316 com Berlim",
+        "latitude": -1.3645994702815059, 
+        "longitude": -48.300222811807046
+    },
+    {
+        "name": "Parada Escola Agroindustrial Juscelino Kubitscheck | BR-316",
+        "latitude": -1.364603770150031, 
+        "longitude": -48.30289765547677
+    },
+    {
+        "name": "Parada BR-316 | Status Engenharia",
+        "latitude": -1.36467331748916, 
+        "longitude": -48.30754957507249
+    },
+    {
+        "name": "Parada UPA Eládio Soares | Sentido Belém",
+        "latitude": -1.364930470365509, 
+        "longitude": -48.31096628592972
+    },
+    {
+        "name": "Parada Res. Viver Melhor",
+        "latitude": -1.3662023728687391, 
+        "longitude": -48.314878053700724
+    },
+    {
+        "name": "Parada BR-316 | Exmam",
+        "latitude": -1.3666970727252115, 
+        "longitude": -48.31931397352747
+    },
+    {
+        "name": "Parada Res. Parque Verde | BR-316",
+        "latitude": -1.3668099637353774, 
+        "longitude": -48.3210245097571
+    },
+    {
+        "name": "Parada Posto Oriente | Sentido Belém",
+        "latitude": -1.3670513943776583, 
+        "longitude": -48.324628291683354
+    },
+    {
+        "name": "Parada BR-316 com R. da Cerâmica",
+        "latitude": -1.3660467470056752, 
+        "longitude": -48.33081679487314
+    },
+    {
+        "name": "Parada Marituba (BR-316 / Km 13 / Iesp)",
+        "latitude": -1.36535050455541, 
+        "longitude": -48.33321383162916
+    },
+    {
+        "name": "Parada Autoescola Foca Marituba",
+        "latitude": -1.365204240612724, 
+        "longitude": -48.33831743067448
+    },
+    {
+        "name": "Parada Ginásio Municipal de Marituba",
+        "latitude": -1.3651783322178757, 
+        "longitude": -48.340463330500114
+    },
+    {
+        "name": "Parada Feira de Marituba",
+        "latitude": -1.3651661598589646, 
+        "longitude": -48.34434686285115
+    },
+    {
+        "name": "Parada Hospital Augusto Chaves",
+        "latitude": -1.3651735962680018, 
+        "longitude": -48.347610611029154
+    },
+    {
+        "name": "Parada BR-316 com Pass. São Jorge",
+        "latitude": -1.3652421123093366, 
+        "longitude": -48.35234084603908
+    },
+    {
+        "name": "Parada Res. Citta Maris | BR-316",
+        "latitude": -1.3652879884598768, 
+        "longitude": -48.35402374560505
+    },
+    {
+        "name": "Parada Scania | BR-316",
+        "latitude": -1.365441328120631, 
+        "longitude": -48.36030610741086
+    },
+    {
+        "name": "Parada BR-316 com Independência",
+        "latitude": -1.365615306508801, 
+        "longitude":-48.364013974496025
+    },
+    {
+        "name": "Parada Prefeitura de Ananideua | BR-316",
+        "latitude": -1.3666205436768903, 
+        "longitude": -48.371628875431846
+    },
+    {
+        "name": "Parada Pleno Residencial | Receita Federal | BR-316",
+        "latitude": -1.3677628045492032, 
+        "longitude": -48.377101520208114
+    },
+    {
+        "name": "Parada Aspeb | BR-316 com Paulo Fonteles",
+        "latitude": -1.368260283424476, 
+        "longitude": -48.37808908244276
+    },
+    {
+        "name": "Parada Fórmula Br",
+        "latitude": -1.3696093577818274, 
+        "longitude": -48.38035317978498
+    },
+    {
+        "name": "Parada BR-316 com R. Cavalcante | Passarela",
+        "latitude": -1.3704949741843429, 
+        "longitude": -48.381908492942735
+    },
+    {
+        "name": "Parada Faam | BR-316",
+        "latitude": -1.3721618885947398, 
+        "longitude": -48.38467302833437
+    },
+    {
+        "name": "Parada Fábrica Ricosa | BR-316",
+        "latitude": -1.375394894339544, 
+        "longitude": -48.39009506660354
+    },
+    {
+        "name": "Parada Batalhão de Polícia Militar | BR-316 com R. Gurupá",
+        "latitude": -1.3773595805113221, 
+        "longitude": -48.39336090103348
+    },
+    {
+        "name": "Parada BR-316 com Jardim Brasil II | Antiga Estação Rodoviária",
+        "latitude": -1.3806097040135463, 
+        "longitude": -48.39877525603521
+    },
+    {
+        "name": "Parada BR-316 com Jader Barbalho | Distribuidora Schin",
+        "latitude": -1.382995150902003, 
+        "longitude": -48.40281575602209
+    },
+    {
+        "name": "Parada Parque Ambiental | BR-316 | Sentido Belém",
+        "latitude": -1.3850118794074495, 
+        "longitude": -48.40637587154917
+    },
+    {
+        "name": "Parada Unama Br",
+        "latitude": -1.3900666327091005, 
+        "longitude": -48.41453863855651
+    },
+    {
+        "name": "Parada Res. Denise de Melo",
+        "latitude": -1.394126123968067, 
+        "longitude": -48.421000519569624
+    },
+    {
+        "name": "Parada Cond. City Park | BR-316",
+        "latitude": -1.3981417950872648, 
+        "longitude": -48.42470185808988
+    },
+    {
+        "name": "Parada Cond. Varanda Castanheira | BR-316 com Pass. Curuçá",
+        "latitude": -1.4031994296430967, 
+        "longitude": -48.42909360594584
+    },
+    {
+        "name": "Parada Cj. Costa e Silva | Almirante Barroso",
+        "latitude": -1.4091997770922688, 
+        "longitude": -48.43956172213412
+    },
+    {
+        "name": "Parada Almirante com Al. Cel. Fontoura",
+        "latitude": -1.4108646736804196, 
+        "longitude": -48.44161747824724
+    },
+    {
+        "name": "Parada Icfex | Almirante Barroso",
+        "latitude": -1.4138954860699569, 
+        "longitude": -48.44387335333209
+    },
+    {
+        "name": "Parada Cj. Império Amazônico | Almirante Barroso",
+        "latitude": -1.4185698296708216, 
+        "longitude": -48.447104800006976
+    },
+    {
+        "name": "Parada Setran | Almirante Barroso",
+        "latitude": -1.420337895520612, 
+        "longitude": -48.44818974823499
+    },
+    {
+        "name": "Parada I Comar | Almirante com Júlio Cezar",
+        "latitude": -1.4224380846427631, 
+        "longitude": -48.44961451629333
+    },
+    {
+        "name": "Parada Escola Cordeiro de Farias | Almirante Barroso",
+        "latitude": -1.4245734794604166, 
+        "longitude": -48.45100507502558
+    },
+    {
+        "name": "Parada UEPA CCBs | Almirante Barroso",
+        "latitude": -1.4290335710467676, 
+        "longitude": -48.45391844140812
+    },
+    {
+        "name": "Parada Bosque Rodrigues Alves (Jardim Zoobotânico)",
+        "latitude": -1.4322831938222205, 
+        "longitude": -48.456071656182914
+    },
+    {
+        "name": "Parada Almirante com Mauriti | Inmetro",
+        "latitude": -1.4361764305317577, 
+        "longitude": -48.458654619964065
+    },
+    {
+        "name": "Parada IFPA | Almirante Barroso",
+        "latitude": -1.438720218033221, 
+        "longitude": -48.46035157044763
+    },
+    {
+        "name": "Parada Almirante com Humaitá",
+        "latitude": -1.4415328428944838, 
+        "longitude": -48.46220328066005
+    },
+    {
+        "name": "Parada Almirante com Curuzú | HDI Seguros",
+        "latitude": -1.4443796651748568, 
+        "longitude": -48.46409663316178
+    },
+    {
+        "name": "Parada Almirante com José Malcher | Shopping São Brás",
+        "latitude": -1.4475958006510354, 
+        "longitude": -48.466217803740456
+    },
+    {
+        "name": "Parada Escola Benvinda de França | São Brás | Expresso",
+        "latitude": -1.4503791667677373,
+        "longitude": -48.468594075912186
+    }
+]
+
