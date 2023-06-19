@@ -25,12 +25,7 @@ export default function Map(){
     const [busStop, setbusStop] = useState(null);
     const [distance, setDistance] = useState('');
     const [time, setTime] = useState('');
-    const [origin, setOrigin] = useState({
-        latitude: -1.450495,
-        longitude: -48.468129,
-        latitudeDelta: 0.00922,
-        longitudeDelta: 0.00421
-    });
+    
 
     useEffect(() => {
         
