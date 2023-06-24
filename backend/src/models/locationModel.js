@@ -1,22 +1,7 @@
 const connection = require("./connection");
-const { signInWithEmailAndPassword } = require("firebase/auth");
 const { ref, onChildChanged, set, remove } = require("firebase/database");
 
 
-
-const auth = async(login) => {
-    const { email, password } = login;
-    
-    return await signInWithEmailAndPassword(connection.auth, email, password)
-    .then((userCredential) => {
-        const { uid } = userCredential.user;
-        
-        return { userId: uid };
-    })
-    .catch((error) => {
-        return error;
-    });
-};
 
 const getBusesLocation = (callback) => {
     const dbRef = ref(connection.realtimeDatabase, 'users/');
@@ -57,5 +42,4 @@ module.exports = {
     stopSendingLocation,
     sendLocation,
     offBusBroken,
-    auth
 };

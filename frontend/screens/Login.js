@@ -1,7 +1,7 @@
 import { Text, TextInput, View, TouchableOpacity, ToastAndroid } from 'react-native';
 import styles from './styles/LoginStyle';
 import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as Animatable from 'react-native-animatable';
 import socket from '../wsServer/websocketServer';
 
@@ -11,23 +11,12 @@ export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
-   
-
-    useEffect(() => {
-        socket.on("answer", answer => {
-            navigation.navigate("Home", {userId: answer.userId });
-        });
-    
-        socket.on("wrongEorP", () => {
-            ToastAndroid.show("Email Inválido", ToastAndroid.SHORT);
-        });
-    }, []);
     
     
-    const handleLogIn = () =>{
+    const handleLogIn = () => {
         const login = { email: email, password: password };
 
-        socket.emit("login", login);
+        socket.emit("login", login, (response) => response? navigation.navigate("Home", {userId: response.userId }) : ToastAndroid.show("Email Inválido", ToastAndroid.SHORT));
     };
     
 

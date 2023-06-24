@@ -2,12 +2,6 @@ const locationModel = require("../models/locationModel");
 
 
 
-const auth = async(login) => {
-    const authentified = await locationModel.auth(login);
-    
-    return authentified;
-};
-
 const getBusesLocation = (callback) => {
     locationModel.getBusesLocation(buses => {
         console.log("controller coords: ", buses);
@@ -34,6 +28,5 @@ module.exports = {
     getBusesLocation,
     offBusBroken,
     stopSendingLocation,
-    sendLocation,
-    auth
+    sendLocation
 };

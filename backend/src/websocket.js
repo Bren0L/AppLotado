@@ -1,5 +1,6 @@
 const { io } = require("./http");
-const controller = require("./controller/locationController");
+const locationcontroller = require("./controller/locationController");
+const userController = require("./controller/userController");
 
 
 
@@ -8,40 +9,38 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", () => console.log(socket.id, " disconnected"));
 
-    socket.on("message", (message) => socket.emit("return", message));
+    socket.on("message", message => socket.emit("return", message));
 
-    socket.on("login", async login => {
-        const firebaseLogin = await controller.auth(login);
+    socket.on("login", async(arg, callback) => {
+        const firebaseLogin = await userController.login(arg);
 
         if(firebaseLogin.code){
             console.log("Error code: ", firebaseLogin);
-            console.log("Access denied");
-            socket.emit("wrongEorP", "wrong");
+            callback(false);
         }else{
             console.log("Access granted");
-            const answer = firebaseLogin;
-            socket.emit("answer", answer);
+            callback(firebaseLogin);
         }
-    });
+    })
 
-    socket.on("sendLocation", (data) => controller.sendLocation(data));
+    socket.on("sendLocation", data => locationcontroller.sendLocation(data));
 
-    socket.on("stopSendingLocation", (user) => {
-        controller.stopSendingLocation(user);
+    socket.on("stopSendingLocation", user => {
+        locationcontroller.stopSendingLocation(user);
 
         io.emit("locationStopped", "stopped");
     });
     
 
     socket.on("getBusesLocation", () => {
-        controller.getBusesLocation(buses => {
+        locationcontroller.getBusesLocation(buses => {
             console.log(buses);
             
             socket.emit("busesLocation", buses);
         });
     });
 
-    socket.on("offBusBroken", user => controller.offBusBroken(user));
+    socket.on("offBusBroken", user => locationcontroller.offBusBroken(user));
     
 });
 
