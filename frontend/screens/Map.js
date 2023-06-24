@@ -1,7 +1,7 @@
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useState, useEffect, useRef } from 'react';
 import MapViewDirections from 'react-native-maps-directions';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, Text, View } from 'react-native';
 import socket from '../wsServer/websocketServer';
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { MAP_API_KEY } from "@env";
@@ -19,10 +19,9 @@ export default function Map(){
   const sheetRef = useRef(null);
   const snapPoints = [150, 400]
 
-    const busImage = require("../assets/bus_stop_icon.png");
     const [buses, setBuses] = useState([]);
     const [getBus, setBus] = useState(null);
-    const [busStop, setbusStop] = useState(null);
+    const [getBusStop, setbusStop] = useState(null);
     const [distance, setDistance] = useState('');
     const [time, setTime] = useState('');
     
@@ -30,8 +29,9 @@ export default function Map(){
     useEffect(() => {
         
         socket.emit("getBusesLocation");
-
         socket.on("busesLocation", location => setBuses([location]));
+
+        
         
         /*async() => {
             await Location.enableNetworkProviderAsync();
@@ -67,43 +67,37 @@ export default function Map(){
             loadingEnabled={true}
             initialRegion={defaultCoordinate}
         >   
-            {require("../routes/Mosqueiro.json").map((busStop, keys) => {
-                    return(
-                        <Marker
-                            coordinate={{latitude: busStop.latitude, longitude: busStop.longitude}}
-                            key={keys}
-                            title={busStop.name}
-                            style={{maxWidth: 20, maxHeight: 20}}
-                            image={busImage}
-                            onPress={() => setbusStop(busStop)}
-                        >   
-                        </Marker>
-                    );
-                })
-            }
+            {require("../routes/Mosqueiro.json").map((busStop, keys) => (
+                <Marker
+                    coordinate={{latitude: busStop.latitude, longitude: busStop.longitude}}
+                    key={keys}
+                    title={busStop.name}
+                    image={require("../assets/bus_stop_icon.png")}
+                    onPress={() => {
+                        setbusStop(busStop, busStop.key = keys);
+                        console.log(getBusStop);
+                    }}
+                />
+                
+            ))}
             
-            {buses && buses.map((bus, busIndex) => {
-                return(
-                    <Marker 
-                        coordinate={{latitude: bus.latitude, longitude: bus.longitude}} 
-                        key={-busIndex-1} 
-                        description={bus.status} 
-                        icon={require("../assets/bus-icon.png")}
-                        title='Mosqueiro' 
-                        onPress={() => {
-                            setBus({latitude: bus.latitude, longitude: bus.longitude});
-                        }}
-                        
-                        >
-                    </Marker>
-                );
-            })}
+            {buses && buses.map((bus, busIndex) => (
+                <Marker 
+                    coordinate={{latitude: bus.latitude, longitude: bus.longitude}} 
+                    key={-busIndex-1} 
+                    description={bus.status} 
+                    image={require("../assets/bus_icon.png")}
+                    title='Mosqueiro' 
+                    onPress={() => setBus({latitude: bus.latitude, longitude: bus.longitude})}
+                />
+            ))}
+
             
-            {getBus && busStop && 
+            {getBus && getBusStop && 
                 <MapViewDirections 
                 mode="DRIVING"
                 origin={getBus}
-                destination={{latitude: busStop.latitude, longitude: busStop.longitude}}
+                destination={{latitude: getBusStop.latitude, longitude: getBusStop.longitude}}
                 timePrecision="now"
                 apikey={MAP_API_KEY}
                 strokeColor="#88E"
@@ -129,7 +123,7 @@ export default function Map(){
                 </View>
                 <View style={{width: "50%", flex: 1}}>
                     <Text style={{fontSize: 20, paddingBottom: 10}}>Mosqueiro</Text>
-                    <Text style={{fontSize: 12, paddingBottom: 10}}>{busStop && busStop.name}</Text>
+                    <Text style={{fontSize: 12, paddingBottom: 10}}>{getBusStop && getBusStop.name}</Text>
                     <Text style={{fontSize: 20, paddingBottom: 10}}>{Math.trunc(time)} minutos</Text>
                     <Text style={{fontSize: 20, paddingBottom: 10}}>{distance}</Text>
                 </View>
@@ -140,15 +134,3 @@ export default function Map(){
         </View>
     );
 }
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 24,
-        justifyContent: 'center',
-        backgroundColor: 'grey',
-      },
-      contentContainer: {
-        flex: 1,
-        alignItems: 'center',
-      },
-})
