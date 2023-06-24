@@ -1,10 +1,12 @@
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useState, useEffect, useRef } from 'react';
 import MapViewDirections from 'react-native-maps-directions';
-import { Dimensions, Image, Text, View } from 'react-native';
+import { Dimensions, Text, View } from 'react-native';
 import socket from '../wsServer/websocketServer';
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { MAP_API_KEY } from "@env";
+import BUS_STOP_ICON from "../assets/bus_stop_icon.png";
+import BUS_ICON from "../assets/bus_icon.png";
 
 
 
@@ -72,7 +74,7 @@ export default function Map(){
                     coordinate={{latitude: busStop.latitude, longitude: busStop.longitude}}
                     key={keys}
                     title={busStop.name}
-                    image={require("../assets/bus_stop_icon.png")}
+                    image={BUS_STOP_ICON}
                     onPress={() => {
                         setbusStop(busStop, busStop.key = keys);
                         console.log(getBusStop);
@@ -86,9 +88,12 @@ export default function Map(){
                     coordinate={{latitude: bus.latitude, longitude: bus.longitude}} 
                     key={-busIndex-1} 
                     description={bus.status} 
-                    image={require("../assets/bus_icon.png")}
+                    image={BUS_ICON}
                     title='Mosqueiro' 
-                    onPress={() => setBus({latitude: bus.latitude, longitude: bus.longitude})}
+                    onPress={() => {
+                        setBus({latitude: bus.latitude, longitude: bus.longitude});
+                        console.log(busIndex)
+                    }}
                 />
             ))}
 
@@ -127,7 +132,6 @@ export default function Map(){
                     <Text style={{fontSize: 20, paddingBottom: 10}}>{Math.trunc(time)} minutos</Text>
                     <Text style={{fontSize: 20, paddingBottom: 10}}>{distance}</Text>
                 </View>
-                
             </BottomSheetView>
         </BottomSheet>
         
