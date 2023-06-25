@@ -3,18 +3,17 @@ const { signInWithEmailAndPassword } = require("firebase/auth");
 
 
 
-const login = async(login) => {
-    const { email, password } = login;
+const login = async(userLogin) => {
+    const { email, password } = userLogin;
     
     return await signInWithEmailAndPassword(connection.auth, email, password)
-    .then((userCredential) => {
-        const { uid } = userCredential.user;
+        .then((userCredential) => {
+            const { uid } = userCredential.user;
         
-        return { userId: uid };
-    })
-    .catch((error) => {
-        return error;
-    });
+            return { userId: uid };
+        }).catch((error) => {
+            console.error(error);
+        });
 };
 
 module.exports = {

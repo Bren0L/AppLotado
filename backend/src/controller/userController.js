@@ -2,10 +2,8 @@ const userModel = require("../models/userModel");
 
 
 
-const login = async(login) => {
-    const authentified = await userModel.login(login);
-    
-    return authentified;
+const login = async(userLogin) => {
+    return await userModel.login(userLogin);
 };
 
 module.exports = {

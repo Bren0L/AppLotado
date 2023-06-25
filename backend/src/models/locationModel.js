@@ -8,8 +8,8 @@ const getBusesLocation = (callback) => {
     onValue(dbRef, (snapshot) => {
         const buses = snapshot.val();
         let allBuses = [];
-        snapshot.forEach(child => allBuses.push(child.val()));
-        console.log(allBuses);
+        snapshot.forEach(child => {allBuses.push(child.val())});
+        console.log("Buses: ", allBuses);
 
         callback(allBuses);
     });

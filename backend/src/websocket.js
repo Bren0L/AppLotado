@@ -11,16 +11,8 @@ io.on("connection", (socket) => {
 
     socket.on("message", message => socket.emit("return", message));
 
-    socket.on("login", async(arg, callback) => {
-        const firebaseLogin = await userController.login(arg);
-
-        if(firebaseLogin.code){
-            console.log("Error code: ", firebaseLogin);
-            callback(false);
-        }else{
-            console.log("Access granted");
-            callback(firebaseLogin);
-        }
+    socket.on("login", async(userLogin, callback) => {
+        callback(await userController.login(userLogin));
     })
 
     socket.on("sendLocation", data => locationcontroller.sendLocation(data));
@@ -32,13 +24,7 @@ io.on("connection", (socket) => {
     });
     
 
-    socket.on("getBusesLocation", () => {
-        locationcontroller.getBusesLocation(buses => {
-            //console.log(buses);
-            
-            socket.emit("busesLocation", buses);
-        });
-    });
+    socket.on("getBusesLocation", () => locationcontroller.getBusesLocation(buses => socket.emit("busesLocation", buses)));
 
     socket.on("offBusBroken", user => locationcontroller.offBusBroken(user));
     

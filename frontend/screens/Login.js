@@ -16,7 +16,10 @@ export default function Login(){
     const handleLogIn = () => {
         const login = { email: email, password: password };
 
-        socket.emit("login", login, (response) => response? navigation.navigate("Home", {userId: response.userId }) : ToastAndroid.show("Email Inválido", ToastAndroid.SHORT));
+        socket.emit("login", login, (response) => {
+            console.log("User: ", response);
+            response? navigation.navigate("Home", {userId: response.userId }) : ToastAndroid.show("Email Inválido", ToastAndroid.SHORT);
+        });
     };
     
 
