@@ -31,7 +31,11 @@ export default function Map(){
     useEffect(() => {
         
         socket.emit("getBusesLocation");
-        socket.on("busesLocation", location => setBuses([location]));
+        socket.on("busesLocation", location => {
+            setBuses(location);
+            console.log("Buses: ", location);
+        });
+        
 
         
         
@@ -76,7 +80,8 @@ export default function Map(){
                     title={busStop.name}
                     image={BUS_STOP_ICON}
                     onPress={() => {
-                        setbusStop(busStop, busStop.key = keys);
+                        busStop.key = keys;
+                        setbusStop(busStop);
                         console.log(getBusStop);
                     }}
                 />
@@ -84,6 +89,7 @@ export default function Map(){
             ))}
             
             {buses && buses.map((bus, busIndex) => (
+                //console.log("Index: ", busIndex),
                 <Marker 
                     coordinate={{latitude: bus.latitude, longitude: bus.longitude}} 
                     key={-busIndex-1} 

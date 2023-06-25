@@ -34,7 +34,7 @@ io.on("connection", (socket) => {
 
     socket.on("getBusesLocation", () => {
         locationcontroller.getBusesLocation(buses => {
-            console.log(buses);
+            //console.log(buses);
             
             socket.emit("busesLocation", buses);
         });

@@ -1,15 +1,17 @@
 const connection = require("./connection");
-const { ref, onChildChanged, set, remove } = require("firebase/database");
+const { ref, onValue, set, remove } = require("firebase/database");
 
 
 
 const getBusesLocation = (callback) => {
     const dbRef = ref(connection.realtimeDatabase, 'users/');
-        
-    onChildChanged(dbRef, (snapshot) => {
+    onValue(dbRef, (snapshot) => {
         const buses = snapshot.val();
-            
-        callback(buses);
+        let allBuses = [];
+        snapshot.forEach(child => allBuses.push(child.val()));
+        console.log(allBuses);
+
+        callback(allBuses);
     });
 };
 

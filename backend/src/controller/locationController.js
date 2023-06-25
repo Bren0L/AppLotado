@@ -4,7 +4,6 @@ const locationModel = require("../models/locationModel");
 
 const getBusesLocation = (callback) => {
     locationModel.getBusesLocation(buses => {
-        console.log("controller coords: ", buses);
 
         callback(buses);
     });
